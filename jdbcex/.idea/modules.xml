@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.zerock.jdbcex.main.iml" filepath="$PROJECT_DIR$/.idea/modules/com.zerock.jdbcex.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/com.zerock.jdbcex.test.iml" filepath="$PROJECT_DIR$/.idea/modules/com.zerock.jdbcex.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/jdbcex.iml" filepath="$PROJECT_DIR$/.idea/jdbcex.iml" />
+    </modules>
+  </component>
+</project>
