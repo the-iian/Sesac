@@ -3,7 +3,6 @@ package org.zerock.w2.controller;
 import lombok.extern.java.Log;
 import org.zerock.w2.dto.MemberDTO;
 import org.zerock.w2.service.MemberService;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
@@ -29,7 +28,6 @@ public class LoginController extends HttpServlet {
 
         String mid = req.getParameter("mid");
         String mpw = req.getParameter("mpw");
-
         String auto = req.getParameter("auto");
 
         boolean rememberMe = auto != null && auto.equals("on");
@@ -37,14 +35,14 @@ public class LoginController extends HttpServlet {
         try {
             MemberDTO memberDTO = MemberService.INSTANCE.login(mid, mpw);
 
-            if (rememberMe){
+            if (rememberMe) {
                 String uuid = UUID.randomUUID().toString();
 
                 MemberService.INSTANCE.updateUuid(mid, uuid);
                 memberDTO.setUuid(uuid);
 
                 Cookie rememberCookie = new Cookie("remember-me", uuid);
-                rememberCookie.setMaxAge(60*60*24*7);  // 쿠키의 유효기간은 1주일
+                rememberCookie.setMaxAge(60 * 60 * 24 * 7);  // 쿠키의 유효기간은 1주일
                 rememberCookie.setPath("/");
 
                 resp.addCookie(rememberCookie);
@@ -54,7 +52,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("loginInfo", memberDTO);
             resp.sendRedirect("/todo/list");
 
-        } catch (Exception e){
+        } catch (Exception e) {
             resp.sendRedirect("/login?result=error");
         }
     }

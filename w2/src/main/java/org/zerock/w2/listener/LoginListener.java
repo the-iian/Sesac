@@ -1,7 +1,6 @@
 package org.zerock.w2.listener;
 
 import lombok.extern.log4j.Log4j2;
-
 import javax.servlet.annotation.WebListener;
 import javax.servlet.http.HttpSessionAttributeListener;
 import javax.servlet.http.HttpSessionBindingEvent;
