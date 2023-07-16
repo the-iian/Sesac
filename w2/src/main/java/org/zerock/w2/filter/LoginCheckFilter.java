@@ -3,8 +3,6 @@ package org.zerock.w2.filter;
 import lombok.extern.log4j.Log4j2;
 import org.zerock.w2.dto.MemberDTO;
 import org.zerock.w2.service.MemberService;
-import sun.security.ssl.CookieExtension;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.Cookie;
