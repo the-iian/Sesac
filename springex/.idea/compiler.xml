@@ -11,5 +11,9 @@
         <module name="springex.springex.main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="springex.springex.main~1" target="1.8" />
+      <module name="springex.springex.test~1" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
