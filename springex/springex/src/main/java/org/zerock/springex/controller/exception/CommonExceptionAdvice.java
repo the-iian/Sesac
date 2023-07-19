@@ -33,22 +33,18 @@ public class CommonExceptionAdvice {
         log.error(exception.getMessage());
 
         StringBuffer buffer = new StringBuffer("<ul>");
-
         buffer.append("<li>" + exception.getMessage()+"</li>");
-
         Arrays.stream(exception.getStackTrace()).forEach(stackTraceElement -> {
             buffer.append("<li>"+stackTraceElement+"</li>");
         });
 
         buffer.append("</ul>");
-
         return buffer.toString();
     }
 
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String notFound(){
-
         return "custom404";
     }
 }
