@@ -1,4 +1,4 @@
-package org.zerock.springex.sample.mapper;
+package org.zerock.springex.mapper;
 
 import lombok.extern.log4j.Log4j2;
 import org.junit.jupiter.api.Test;
