@@ -37,4 +37,6 @@
     </bean>
 
     <mybatis:scan base-package="org.zerock.springex.mapper"></mybatis:scan>
+
+    <context:component-scan base-package="org.zerock.springex.config"/>
 </beans>

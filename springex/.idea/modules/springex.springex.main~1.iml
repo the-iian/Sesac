@@ -5,4 +5,9 @@
       <sourceFolder url="file://$MODULE_DIR$/../../springex/build/generated/sources/annotationProcessor/java/main" isTestSource="false" generated="true" />
     </content>
   </component>
+  <component name="FacetManager">
+    <facet type="Spring" name="Spring">
+      <configuration />
+    </facet>
+  </component>
 </module>
