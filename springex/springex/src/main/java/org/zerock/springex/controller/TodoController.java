@@ -28,6 +28,8 @@ public class TodoController {
     public void list(Model model){
 
         log.info("todo list.......");
+
+        model.addAttribute("dtoList", todoService.getAll());
     }
 
     //@RequestMapping(value = "/register", method = RequestMethod.GET)
