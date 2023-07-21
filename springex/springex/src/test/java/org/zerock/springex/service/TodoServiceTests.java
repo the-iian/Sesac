@@ -12,21 +12,22 @@ import java.time.LocalDate;
 
 @Log4j2
 @ExtendWith(SpringExtension.class)
-@ContextConfiguration(locations = "file:src/main/webapp/WEB-INF/root-context.xml")
+@ContextConfiguration(locations="file:src/main/webapp/WEB-INF/root-context.xml")
 public class TodoServiceTests {
 
     @Autowired
     private TodoService todoService;
 
     @Test
-    public void testRegister() {
+    public void testRegister(){
 
         TodoDTO todoDTO = TodoDTO.builder()
-                .title("Test....")
+                .title("Test......")
                 .dueDate(LocalDate.now())
                 .writer("user1")
                 .build();
 
         todoService.register(todoDTO);
+
     }
 }
