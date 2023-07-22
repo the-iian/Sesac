@@ -76,7 +76,6 @@
     </div>
   </div>
   <div class="row content">
-
     <h1>Content</h1>
   </div>
   <div class="row footer">
@@ -87,7 +86,6 @@
         <p class="text-center text-muted">Footer</p>
       </footer>
     </div>
-
   </div>
 </div>
 
