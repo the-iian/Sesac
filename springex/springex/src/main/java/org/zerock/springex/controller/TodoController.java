@@ -64,6 +64,14 @@ public class TodoController {
         log.info(todoDTO);
 
         model.addAttribute("dto", todoDTO);
+    }
 
+    @PostMapping("/remove")
+    public String remove(Long tno, RedirectAttributes redirectAttributes){
+
+        log.info("-------remove-------");
+        log.info("tno: " + tno);
+
+        return "redirect:/todo/list";
     }
 }
