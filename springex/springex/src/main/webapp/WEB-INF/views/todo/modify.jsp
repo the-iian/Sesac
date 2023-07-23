@@ -145,23 +145,23 @@
 
             },false);
 
-            /*document.querySelector(".btn-secondary").addEventListener("click",function(e) {
+            document.querySelector(".btn-secondary").addEventListener("click",function(e) {
 
                 e.preventDefault()
                 e.stopPropagation()
 
                 self.location = "/todo/list";
 
-            },false);*/
-
-            document.querySelector(".btn-secondary").addEventListener("click",function(e) {
-
-              e.preventDefault()
-              e.stopPropagation()
-
-              self.location= `/todo/list?${pageRequestDTO.link}`
-
             },false);
+
+            <%--document.querySelector(".btn-secondary").addEventListener("click",function(e) {--%>
+
+            <%--  e.preventDefault()--%>
+            <%--  e.stopPropagation()--%>
+
+            <%--  self.location= `/todo/list?${pageRequestDTO.link}`--%>
+
+            <%--},false);--%>
 
 
           </script>
