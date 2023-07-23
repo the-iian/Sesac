@@ -24,7 +24,6 @@ public class TodoController {
 
     private final TodoService todoService;
 
-
     @GetMapping("/register")
     public void registerGET() {
         log.info("GET todo register.......");
@@ -60,7 +59,6 @@ public class TodoController {
 
     }
 
-
     @PostMapping("/remove")
     public String remove(Long tno, PageRequestDTO pageRequestDTO, RedirectAttributes redirectAttributes){
 
@@ -71,7 +69,6 @@ public class TodoController {
 
         return "redirect:/todo/list?" + pageRequestDTO.getLink();
     }
-
 
     @PostMapping("/modify")
     public String modify(
@@ -96,7 +93,6 @@ public class TodoController {
         return "redirect:/todo/read";
     }
 
-
     @GetMapping("/list")
     public void list(@Valid PageRequestDTO pageRequestDTO, BindingResult bindingResult, Model model){
 
@@ -106,5 +102,6 @@ public class TodoController {
             pageRequestDTO = PageRequestDTO.builder().build();
         }
         model.addAttribute("responseDTO", todoService.getList(pageRequestDTO));
+
     }
 }

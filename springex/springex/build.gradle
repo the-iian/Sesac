@@ -11,7 +11,7 @@ repositories {
 }
 
 ext {
-    junitVersion = '5.9.2'
+    junitVersion = '5.8.1'
 }
 
 sourceCompatibility = '1.8'
@@ -43,7 +43,7 @@ dependencies {
     implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.17.2'
     implementation group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.17.2'
     implementation group: 'jstl', name: 'jstl', version: '1.2'
-    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.4'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:3.0.3'
     implementation group: 'com.zaxxer', name: 'HikariCP', version: '5.0.1'
     implementation 'org.mybatis:mybatis:3.5.9'
     implementation 'org.mybatis:mybatis-spring:2.0.7'

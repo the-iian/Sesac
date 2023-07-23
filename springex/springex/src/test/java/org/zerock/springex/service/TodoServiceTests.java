@@ -30,10 +30,11 @@ public class TodoServiceTests {
                 .build();
 
         todoService.register(todoDTO);
+
     }
 
     @Test
-    public void testPaging(){
+    public void testPaging() {
 
         PageRequestDTO pageRequestDTO = PageRequestDTO.builder().page(1).size(10).build();
 
@@ -42,5 +43,6 @@ public class TodoServiceTests {
         log.info(responseDTO);
 
         responseDTO.getDtoList().stream().forEach(todoDTO -> log.info(todoDTO));
+
     }
 }

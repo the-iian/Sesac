@@ -25,4 +25,5 @@ public class TodoDTO {
 
     @NotEmpty
     private String writer;
+
 }

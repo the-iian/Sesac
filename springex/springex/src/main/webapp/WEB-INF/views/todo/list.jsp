@@ -135,21 +135,6 @@
 
             <script>
 
-              /* document.querySelector(".pagination").addEventListener("click", function (e) {
-                      e.preventDefault()
-                      e.stopPropagation()
-
-                      const target = e.target
-
-
-                      if(target.tagName !== 'A') {
-                          return
-                      }
-                      const num = target.getAttribute("data-num")
-
-                      self.location = `/todo/list?page=\${num}` //백틱(` `)을 이용해서 템플릿 처리
-                  },false)*/
-
               document.querySelector(".pagination").addEventListener("click", function (e) {
                 e.preventDefault()
                 e.stopPropagation()
@@ -168,8 +153,6 @@
                 formObj.submit();
 
               },false)
-
-
 
               document.querySelector(".clearBtn").addEventListener("click", function (e){
                 e.preventDefault()
@@ -202,7 +185,6 @@
 
   </div>
 </div>
-
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 

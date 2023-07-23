@@ -9,7 +9,6 @@ import org.zerock.springex.dto.PageRequestDTO;
 import org.zerock.springex.dto.PageResponseDTO;
 import org.zerock.springex.dto.TodoDTO;
 import org.zerock.springex.mapper.TodoMapper;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,16 +33,6 @@ public class TodoServiceImpl implements TodoService{
         todoMapper.insert(todoVO);
 
     }
-
-//    @Override
-//    public List<TodoDTO> getAll() {
-//
-//        List<TodoDTO> dtoList = todoMapper.selectAll().stream()
-//                .map(vo -> modelMapper.map(vo, TodoDTO.class))
-//                .collect(Collectors.toList());
-//
-//        return dtoList;
-//    }
 
     @Override
     public TodoDTO getOne(Long tno) {
