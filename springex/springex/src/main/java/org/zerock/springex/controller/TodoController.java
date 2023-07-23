@@ -102,6 +102,5 @@ public class TodoController {
             pageRequestDTO = PageRequestDTO.builder().build();
         }
         model.addAttribute("responseDTO", todoService.getList(pageRequestDTO));
-
     }
 }
