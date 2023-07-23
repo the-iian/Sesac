@@ -49,8 +49,6 @@
           <div class="card-body">
             <form action="/todo/modify" method="post">
 
-
-
               <div class="input-group mb-3">
                 <span class="input-group-text">TNO</span>
                 <input type="text" name="tno" class="form-control"
@@ -145,23 +143,15 @@
 
             },false);
 
+
             document.querySelector(".btn-secondary").addEventListener("click",function(e) {
 
-                e.preventDefault()
-                e.stopPropagation()
+              e.preventDefault()
+              e.stopPropagation()
 
-                self.location = "/todo/list";
+              self.location= `/todo/list?${pageRequestDTO.link}`
 
             },false);
-
-            <%--document.querySelector(".btn-secondary").addEventListener("click",function(e) {--%>
-
-            <%--  e.preventDefault()--%>
-            <%--  e.stopPropagation()--%>
-
-            <%--  self.location= `/todo/list?${pageRequestDTO.link}`--%>
-
-            <%--},false);--%>
 
 
           </script>
