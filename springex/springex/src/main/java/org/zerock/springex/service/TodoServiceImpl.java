@@ -1,6 +1,7 @@
 package org.zerock.springex.service;
 
 import lombok.RequiredArgsConstructor;
+import lombok.Value;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -48,5 +49,12 @@ public class TodoServiceImpl implements TodoService{
         TodoDTO todoDTO = modelMapper.map(todoVO, TodoDTO.class);
 
         return todoDTO;
+    }
+
+    @Override
+    public void remove(Long tno){
+
+        todoMapper.delete(tno);
+
     }
 }
