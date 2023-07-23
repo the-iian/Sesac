@@ -4,8 +4,6 @@ import org.zerock.springex.dto.PageRequestDTO;
 import org.zerock.springex.dto.PageResponseDTO;
 import org.zerock.springex.dto.TodoDTO;
 
-import java.util.List;
-
 public interface TodoService {
 
     void register(TodoDTO todoDTO);
@@ -19,5 +17,4 @@ public interface TodoService {
     void remove(Long tno);
 
     void modify(TodoDTO todoDTO);
-
 }
