@@ -24,6 +24,9 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
         query.where(board.title.contains("1")); // where title like...
 
+        //paging
+        this.getQuerydsl().applyPagination(pageable, query);
+
         List<Board> list = query.fetch();
 
         long count = query.fetchCount();
