@@ -1,5 +1,6 @@
 package org.zerock.b02.controller;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.extern.log4j.Log4j2;
@@ -59,5 +60,15 @@ public class BoardController {
         redirectAttributes.addFlashAttribute("result", bno);
 
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/read")
+    public void read(Long bno, PageRequestDTO pageRequestDTO, Model model){
+
+        BoardDTO boardDTO = boardService.readOne(bno);
+
+        log.info(boardDTO);
+
+        model.addAttribute("dto", boardDTO);
     }
 }
