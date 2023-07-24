@@ -3,6 +3,7 @@ package org.zerock.b02.repository.search;
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.zerock.b02.domain.Board;
@@ -41,7 +42,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         QBoard board = QBoard.board;
         JPQLQuery<Board> query = from(board);
 
-        if (types != null && types.length > 0) && keyword != null) {
+        if ((types != null && types.length > 0) && keyword != null) {
 
             BooleanBuilder booleanBuilder = new BooleanBuilder();
 
@@ -72,6 +73,6 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
         long count = query.fetchCount();
 
-        return null;
+        return new PageImpl<>(list, pageable, count);
     }
 }
