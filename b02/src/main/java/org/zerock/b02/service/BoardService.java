@@ -9,4 +9,6 @@ public interface BoardService {
     BoardDTO readOne(Long bno);
 
     void modify(BoardDTO boardDTO);
+
+    void remove(Long bno);
 }
