@@ -6,8 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
-
-import java.awt.print.Pageable;
+import org.springframework.data.domain.Pageable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
