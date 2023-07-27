@@ -36,6 +36,7 @@ public class ReplyRepositoryTests {
         replyRepository.save(reply);
     }
 
+//    git에 업데이트 안된 코드
 //    @Test
 //    public void testBoardReplies() {
 //
