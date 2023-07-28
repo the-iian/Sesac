@@ -9,6 +9,8 @@ import org.zerock.b02.dto.ReplyDTO;
 import org.zerock.b02.repository.ReplyRepository;
 import org.zerock.b02.service.ReplyService;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Log4j2
@@ -23,5 +25,33 @@ public class ReplyServiceImpl implements ReplyService {
         Reply reply = modelMapper.map(replyDTO, Reply.class);
         Long rno = replyRepository.save(reply).getRno();
         return rno;
+    }
+
+    @Override
+    public ReplyDTO read(Long rno){
+
+        Optional<Reply> replyOptional = replyRepository.findById(rno);
+
+        Reply reply = replyOptional.orElseThrow();
+
+        return modelMapper.map(reply, ReplyDTO.class);
+    }
+
+    @Override
+    public void modify(ReplyDTO replyDTO){
+
+        Optional<Reply> replyOptional = replyRepository.findById(replyDTO.getRno());
+
+        Reply reply = replyOptional.orElseThrow();
+
+        reply.changeText(replyDTO.getReplyText()); // 댓글의 내용만 수정 가능
+
+        replyRepository.save(reply);
+
+    }
+
+    @Override
+    public void remove(Long rno){
+        replyRepository.deleteById(rno);
     }
 }
