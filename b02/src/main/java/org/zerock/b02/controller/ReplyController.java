@@ -7,6 +7,8 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.zerock.b02.dto.PageRequestDTO;
+import org.zerock.b02.dto.PageResponseDTO;
 import org.zerock.b02.dto.ReplyDTO;
 import org.zerock.b02.service.ReplyService;
 
@@ -42,5 +44,14 @@ public class ReplyController {
         resultMap.put("rno",rno);
 
         return resultMap;
+    }
+
+    @ApiOperation(value = "Replies of Board", notes = "GET 방식으로 특정 게시물의 댓글 목록")
+    @GetMapping(value = "/list/{bno}")
+    public PageResponseDTO<ReplyDTO> getList(@PathVariable("bno") Long bno, PageRequestDTO pageRequestDTO){
+
+        PageResponseDTO<ReplyDTO> responseDTO = replyService.getListOfBoard(bno, pageRequestDTO);
+
+        return responseDTO;
     }
 }
