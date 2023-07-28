@@ -159,5 +159,4 @@ public class BoardRepositoryTests {
 
         result.getContent().forEach(board -> log.info(board));
     }
-    /?
 }

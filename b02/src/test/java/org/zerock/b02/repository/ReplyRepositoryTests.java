@@ -38,7 +38,7 @@ public class ReplyRepositoryTests {
 
     }
 
-    @Transactional
+    @Transactional // 커넥션을 유지하고 트랜잭션에 관련된걸 모두 돌린 후 종료한다.
     @Test
     public void testBoardReplies() {
 
