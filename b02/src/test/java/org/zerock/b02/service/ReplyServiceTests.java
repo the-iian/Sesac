@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.zerock.b02.dto.ReplyDTO;
-import org.zerock.b02.repository.search.ReplyService;
 
 @SpringBootTest
 @Log4j2

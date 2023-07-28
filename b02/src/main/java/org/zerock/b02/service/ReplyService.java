@@ -1,4 +1,4 @@
-package org.zerock.b02.repository.search;
+package org.zerock.b02.service;
 
 import org.zerock.b02.dto.ReplyDTO;
 
