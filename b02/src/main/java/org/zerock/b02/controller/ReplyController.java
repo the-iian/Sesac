@@ -8,6 +8,7 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.zerock.b02.dto.ReplyDTO;
+import org.zerock.b02.service.ReplyService;
 
 
 import javax.validation.Valid;
@@ -17,9 +18,10 @@ import java.util.Map;
 @RestController
 @RequestMapping("/replies")
 @Log4j2
-@RequiredArgsConstructor
+@RequiredArgsConstructor //의존성 주입을 위한
 public class ReplyController {
 
+    private final ReplyService replyService;
 
     @ApiOperation(value = "Replies POST", notes = "POST 방식으로 댓글 등록")
     @PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -34,7 +36,10 @@ public class ReplyController {
         }
 
         Map<String, Long> resultMap = new HashMap<>();
-        resultMap.put("rno",111L);
+
+        Long rno = replyService.register(replyDTO);
+
+        resultMap.put("rno",rno);
 
         return resultMap;
     }
