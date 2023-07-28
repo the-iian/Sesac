@@ -1,4 +1,4 @@
-package org.zerock.b01.controller.advice;
+package org.zerock.b02.controller.advice;
 
 
 import lombok.extern.log4j.Log4j2;
@@ -38,6 +38,19 @@ public class CustomRestAdvice {
             });
         }
 
+        return ResponseEntity.badRequest().body(errorMap);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
+    public ResponseEntity<Map<String, String>> handleFKEXception(Exception e){
+
+        log.error(e);
+
+        Map<String, String> errorMap = new HashMap<>();
+
+        errorMap.put("time", ""+System.currentTimeMillis());
+        errorMap.put("msg", "constraint fails");
         return ResponseEntity.badRequest().body(errorMap);
     }
 }
