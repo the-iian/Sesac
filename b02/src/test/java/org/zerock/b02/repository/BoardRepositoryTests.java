@@ -16,6 +16,8 @@ import java.util.stream.IntStream;
 import org.springframework.data.domain.Pageable;
 import org.zerock.b02.dto.BoardListReplyCountDTO;
 
+import javax.transaction.Transactional;
+
 @SpringBootTest
 @Log4j2
 public class BoardRepositoryTests {
@@ -177,5 +179,19 @@ public class BoardRepositoryTests {
         } // end for
 
         boardRepository.save(board);
+    }
+
+    @Test
+    @Transactional
+    public void testReadWithImages() {
+
+        // 반드시 존재하는 bno로 확인
+        Optional<Board> result = boardRepository.findById(1L);
+
+        Board board = result.orElseThrow();
+
+        log.info(board);
+        log.info("------------");
+        log.info(board.getImageSet());
     }
 }
