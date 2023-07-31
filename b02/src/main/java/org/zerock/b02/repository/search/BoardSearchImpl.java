@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardSearch {
 
-    public BoardSearchImpl() {
+    public BoardSearchImpl(){
         super(Board.class);
     }
 
@@ -32,7 +32,9 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         JPQLQuery<Board> query = from(board);
 
         BooleanBuilder booleanBuilder = new BooleanBuilder(); // (
+
         booleanBuilder.or(board.title.contains("11")); // title like ...
+
         booleanBuilder.or(board.content.contains("11")); // content like ....
 
         query.where(booleanBuilder);
@@ -46,6 +48,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
         long count = query.fetchCount();
 
+
         return null;
 
     }
@@ -56,13 +59,13 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         QBoard board = QBoard.board;
         JPQLQuery<Board> query = from(board);
 
-        if ((types != null && types.length > 0) && keyword != null) { //검색 조건과 키워드가 있다면
+        if( (types != null && types.length > 0) && keyword != null ){ //검색 조건과 키워드가 있다면
 
             BooleanBuilder booleanBuilder = new BooleanBuilder(); // (
 
-            for (String type : types) {
+            for(String type: types){
 
-                switch (type) {
+                switch (type){
                     case "t":
                         booleanBuilder.or(board.title.contains(keyword));
                         break;
@@ -102,13 +105,13 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
 
         query.groupBy(board);
 
-        if ((types != null && types.length > 0) && keyword != null) {
+        if( (types != null && types.length > 0) && keyword != null ){
 
             BooleanBuilder booleanBuilder = new BooleanBuilder(); // (
 
-            for (String type : types) {
+            for(String type: types){
 
-                switch (type) {
+                switch (type){
                     case "t":
                         booleanBuilder.or(board.title.contains(keyword));
                         break;
@@ -134,7 +137,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
                 reply.count().as("replyCount")
         ));
 
-        this.getQuerydsl().applyPagination(pageable, dtoQuery);
+        this.getQuerydsl().applyPagination(pageable,dtoQuery);
 
         List<BoardListReplyCountDTO> dtoList = dtoQuery.fetch();
 
@@ -152,9 +155,32 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         JPQLQuery<Board> boardJPQLQuery = from(board);
         boardJPQLQuery.leftJoin(reply).on(reply.board.eq(board)); //left join
 
+        if( (types != null && types.length > 0) && keyword != null ){
+
+            BooleanBuilder booleanBuilder = new BooleanBuilder(); // (
+
+            for(String type: types){
+
+                switch (type){
+                    case "t":
+                        booleanBuilder.or(board.title.contains(keyword));
+                        break;
+                    case "c":
+                        booleanBuilder.or(board.content.contains(keyword));
+                        break;
+                    case "w":
+                        booleanBuilder.or(board.writer.contains(keyword));
+                        break;
+                }
+            }//end for
+            boardJPQLQuery.where(booleanBuilder);
+        }
+
         boardJPQLQuery.groupBy(board);
 
-        getQuerydsl().applyPagination(pageable, boardJPQLQuery); // paging
+        getQuerydsl().applyPagination(pageable, boardJPQLQuery); //paging
+
+
 
         JPQLQuery<Tuple> tupleJPQLQuery = boardJPQLQuery.select(board, reply.countDistinct());
 
@@ -163,7 +189,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         List<BoardListAllDTO> dtoList = tupleList.stream().map(tuple -> {
 
             Board board1 = (Board) tuple.get(board);
-            long replyCount = tuple.get(1, Long.class);
+            long replyCount = tuple.get(1,Long.class);
 
             BoardListAllDTO dto = BoardListAllDTO.builder()
                     .bno(board1.getBno())
@@ -173,7 +199,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
                     .replyCount(replyCount)
                     .build();
 
-            // BoardImage를 BoardImageDTO 처리할 부분
+            //BoardImage를 BoardImageDTO 처리할 부분
             List<BoardImageDTO> imageDTOS = board1.getImageSet().stream().sorted()
                     .map(boardImage -> BoardImageDTO.builder()
                             .uuid(boardImage.getUuid())
@@ -182,13 +208,13 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
                             .build()
                     ).collect(Collectors.toList());
 
-            dto.setBoardImages(imageDTOS); // 처리된 BoardImageDTO들을 추가
+            dto.setBoardImages(imageDTOS);
 
             return dto;
-
         }).collect(Collectors.toList());
 
-        Long totalCount = boardJPQLQuery.fetchCount();
+        long totalCount = boardJPQLQuery.fetchCount();
+
 
         return new PageImpl<>(dtoList, pageable, totalCount);
     }
