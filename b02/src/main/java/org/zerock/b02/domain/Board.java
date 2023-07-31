@@ -4,6 +4,8 @@ package org.zerock.b02.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Entity
@@ -11,7 +13,7 @@ import javax.persistence.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
+@ToString(exclude = "imageSet")
 public class Board extends BaseEntity {
 
     @Id
@@ -31,4 +33,8 @@ public class Board extends BaseEntity {
         this.title = title;
         this.content = content;
     }
+
+    @OneToMany
+    @Builder.Default
+    private Set<BoardImage> imageSet = new HashSet<>();
 }
