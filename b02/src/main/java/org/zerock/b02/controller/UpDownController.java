@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.zerock.b02.dto.upload.UploadFileDTO;
 
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.UUID;
+
 
 @RestController
 @Log4j2
@@ -26,8 +31,22 @@ public class UpDownController {
         if (uploadFileDTO.getFiles() != null){
 
             uploadFileDTO.getFiles().forEach(multipartFile -> {
+                
+                // 중복된 파일명 방지
+                String originalName = multipartFile.getOriginalFilename();
+                log.info(originalName);
 
-                log.info(multipartFile.getOriginalFilename());
+                // UUID로 새로운 코드값 생성
+                String uuid = UUID.randomUUID().toString();
+
+                Path savePath = Paths.get(uploadPath, uuid+"_"+ originalName);
+
+                try{
+                    multipartFile.transferTo(savePath); // 실제 파일 저장
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+
             }); // end each
         } // end if
         return null;
