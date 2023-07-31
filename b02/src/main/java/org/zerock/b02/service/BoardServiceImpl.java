@@ -6,10 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.zerock.b02.domain.Board;
-import org.zerock.b02.dto.BoardDTO;
-import org.zerock.b02.dto.BoardListReplyCountDTO;
-import org.zerock.b02.dto.PageRequestDTO;
-import org.zerock.b02.dto.PageResponseDTO;
+import org.zerock.b02.dto.*;
 import org.zerock.b02.repository.BoardRepository;
 
 import javax.transaction.Transactional;
@@ -102,5 +99,10 @@ public class BoardServiceImpl implements BoardService{
                 .dtoList(result.getContent())
                 .total((int)result.getTotalElements())
                 .build();
+    }
+
+    @Override
+    public PageResponseDTO<BoardListAllDTO> listWithAll(PageRequestDTO pageRequestDTO){
+        return null;
     }
 }
