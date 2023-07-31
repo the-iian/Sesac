@@ -217,6 +217,29 @@ public class BoardRepositoryTests {
         }
 
         boardRepository.save(board);
+    }
 
+    // 테스트를 위한 더미 데이터 추가
+    @Test
+    public void testInsertAll(){
+
+        for (int i=1; i<=100; i++){
+
+            Board board = Board.builder()
+                    .title("Title.." + i)
+                    .content("Content.." + i)
+                    .writer("writer.." + i)
+                    .build();
+
+            for (int j=0; j<3; j++){
+
+                if (i % 5 == 0){
+                    continue;
+                }
+                board.addImage(UUID.randomUUID().toString(), i+"file"+j+".jpg");
+            }
+            boardRepository.save(board);
+
+        } // end for
     }
 }
