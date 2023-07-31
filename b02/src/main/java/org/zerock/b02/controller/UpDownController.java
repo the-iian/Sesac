@@ -30,7 +30,7 @@ public class UpDownController {
     @ApiOperation(value = "Upload POST", notes = "POST방식으로 파일 등록")
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 
-    public String upload(UploadFileDTO uploadFileDTO) {
+    public List<UploadResultDTO> upload(UploadFileDTO uploadFileDTO){
 
         log.info(uploadFileDTO);
 
