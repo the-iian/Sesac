@@ -39,11 +39,12 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public BoardDTO readOne(Long bno){
 
-        Optional<Board> result = boardRepository.findById(bno);
+        // board_image까지 조인 처리되는 findByWithImages()를 이용
+        Optional<Board> result = boardRepository.findByIdWithImages(bno);
 
         Board board = result.orElseThrow();
 
-        BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
+        BoardDTO boardDTO = entityToDTO(board);
 
         return boardDTO;
     }
@@ -56,6 +57,16 @@ public class BoardServiceImpl implements BoardService{
         Board board = result.orElseThrow();
 
         board.change(boardDTO.getTitle(), boardDTO.getContent());
+
+        // 첨부파일의 처리
+        board.clearImages();
+
+        if (boardDTO.getFileNames() != null){
+            for (String fileName : boardDTO.getFileNames()) {
+                String[] arr = fileName.split("_");
+                board.addImage(arr[0], arr[1]);
+            }
+        }
 
         boardRepository.save(board);
     }
