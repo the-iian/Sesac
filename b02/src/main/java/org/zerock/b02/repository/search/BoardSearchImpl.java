@@ -1,6 +1,7 @@
 package org.zerock.b02.repository.search;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.Tuple;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.JPQLQuery;
 import org.springframework.data.domain.Page;
@@ -10,9 +11,11 @@ import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport
 import org.zerock.b02.domain.Board;
 import org.zerock.b02.domain.QBoard;
 import org.zerock.b02.domain.QReply;
+import org.zerock.b02.dto.BoardListAllDTO;
 import org.zerock.b02.dto.BoardListReplyCountDTO;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardSearch {
 
@@ -140,7 +143,7 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
     }
 
     @Override
-    public Page<BoardListReplyCountDTO> searchWithAll(String[] types, String keyword, Pageable pageable) {
+    public Page<BoardListAllDTO> searchWithAll(String[] types, String keyword, Pageable pageable) {
 
         QBoard board = QBoard.board;
         QReply reply = QReply.reply;
@@ -148,16 +151,35 @@ public class BoardSearchImpl extends QuerydslRepositorySupport implements BoardS
         JPQLQuery<Board> boardJPQLQuery = from(board);
         boardJPQLQuery.leftJoin(reply).on(reply.board.eq(board)); //left join
 
+        boardJPQLQuery.groupBy(board);
+
         getQuerydsl().applyPagination(pageable, boardJPQLQuery); // paging
 
-        List<Board> boardList = boardJPQLQuery.fetch();
+        JPQLQuery<Tuple> tupleJPQLQuery = boardJPQLQuery.select(board, reply.countDistinct());
 
-        boardList.forEach(board1 -> {
-            System.out.println(board1.getBno());
-            System.out.println(board1.getImageSet());
-            System.out.println("-----------------");
-        });
+        List<Tuple> tupleList = tupleJPQLQuery.fetch();
 
-        return null;
+        List<BoardListAllDTO> dtoList = tupleList.stream().map(tuple -> {
+
+            Board board1 = (Board) tuple.get(board);
+            long replyCount = tuple.get(1, Long.class);
+
+            BoardListAllDTO dto = BoardListAllDTO.builder()
+                    .bno(board1.getBno())
+                    .title(board1.getTitle())
+                    .writer(board1.getWriter())
+                    .regDate(board1.getRegDate())
+                    .replyCount(replyCount)
+                    .build();
+
+            // BoardImage를 BoardImageDTO 처리할 부분
+
+            return dto;
+
+        }).collect(Collectors.toList());
+
+        Long totalCount = boardJPQLQuery.fetchCount();
+
+        return new PageImpl<>(dtoList, pageable, totalCount);
     }
 }
