@@ -44,6 +44,9 @@ public class BoardServiceTests {
                 .content("Updated content 101...")
                 .build();
 
+        // 첨부파일을 하나 추가
+        boardDTO.setFileNames(Arrays.asList(UUID.randomUUID()+"_zzz.jpg"));
+
         boardService.modify(boardDTO);
     }
 
@@ -97,5 +100,13 @@ public class BoardServiceTests {
         for (String fileName : boardDTO.getFileNames()){
             log.info(fileName);
         } // end for
+    }
+
+    @Test
+    public void testRemoveAll() {
+
+        Long bno = 1L;
+
+        boardService.remove(bno);
     }
 }
