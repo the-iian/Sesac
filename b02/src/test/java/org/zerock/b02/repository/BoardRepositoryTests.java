@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.test.annotation.Commit;
 import org.zerock.b02.domain.Board;
 
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.IntStream;
 import org.springframework.data.domain.Pageable;
+import org.zerock.b02.domain.BoardImage;
 import org.zerock.b02.dto.BoardListReplyCountDTO;
 
 import javax.transaction.Transactional;
@@ -182,16 +184,39 @@ public class BoardRepositoryTests {
     }
 
     @Test
-    @Transactional
     public void testReadWithImages() {
 
         // 반드시 존재하는 bno로 확인
-        Optional<Board> result = boardRepository.findById(1L);
+        Optional<Board> result = boardRepository.findByIdWithImages(1L);
 
         Board board = result.orElseThrow();
 
         log.info(board);
-        log.info("------------");
-        log.info(board.getImageSet());
+        log.info("--------------------");
+        for (BoardImage boardImage : board.getImageSet()){
+            log.info(boardImage);
+        }
+    }
+
+    @Transactional
+    @Commit
+    @Test
+    public void testModifyImages() {
+
+        Optional<Board> result = boardRepository.findByIdWithImages(1L);
+
+        Board board = result.orElseThrow();
+
+        // 기존 첨부파일들은 삭제
+        board.clearImages();
+
+        // 새로운 첨부파일들
+        for (int i=0; i<2; i++){
+
+            board.addImage(UUID.randomUUID().toString(), "updatefile" + i + ".jpg");
+        }
+
+        boardRepository.save(board);
+
     }
 }
