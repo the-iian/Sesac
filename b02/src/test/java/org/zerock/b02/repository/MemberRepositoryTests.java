@@ -59,7 +59,7 @@ public class MemberRepositoryTests {
 
     @Commit
     @Test
-    public void testUpdate(){
+    public void testUpdate(){ // 카카오 로그인 아이디정보 수정
 
         String mid = "yirangj@naver.com"; // 소셜로그인으로 추가된 사용자로 현재 DB에 존재하는 이메일
         String mpw = passwordEncoder.encode("54321");
