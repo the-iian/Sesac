@@ -1,7 +1,6 @@
 package org.zerock.api01.domain;
 
 import lombok.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

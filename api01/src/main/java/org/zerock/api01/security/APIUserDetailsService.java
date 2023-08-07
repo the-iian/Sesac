@@ -11,7 +11,6 @@ import org.zerock.api01.domain.APIUser;
 import org.zerock.api01.dto.APIUserDTO;
 import org.zerock.api01.repository.APIUserRepository;
 
-import java.nio.file.LinkOption;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +19,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class APIUserDetailsService implements UserDetailsService {
 
-    // 주입
+    //주입
     private final APIUserRepository apiUserRepository;
 
     @Override
@@ -30,9 +29,9 @@ public class APIUserDetailsService implements UserDetailsService {
 
         APIUser apiUser = result.orElseThrow(() -> new UsernameNotFoundException("Cannot find mid"));
 
-        log.info("APIUserDetailService apiUser------------------------------------");
+        log.info("APIUserDetailsService apiUser-------------------------------------");
 
-        APIUserDTO dto = new APIUserDTO(
+        APIUserDTO dto =  new APIUserDTO(
                 apiUser.getMid(),
                 apiUser.getMpw(),
                 List.of(new SimpleGrantedAuthority("ROLE_USER")));

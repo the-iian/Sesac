@@ -20,11 +20,11 @@ public class APIUserRepositoryTests {
     private APIUserRepository apiUserRepository;
 
     @Test
-    public void testInserts(){
-        IntStream.rangeClosed(1,100).forEach(i-> {
+    public void testInserts() {
+        IntStream.rangeClosed(1,100).forEach(i -> {
             APIUser apiUser = APIUser.builder()
                     .mid("apiuser"+i)
-                    .mpw(passwordEncoder.encode("1111"))
+                    .mpw( passwordEncoder.encode("1111") )
                     .build();
 
             apiUserRepository.save(apiUser);
