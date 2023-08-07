@@ -132,7 +132,6 @@ public class BoardController {
         redirectAttributes.addFlashAttribute("result", "removed");
 
         return "redirect:/board/list";
-
     }
 
 
