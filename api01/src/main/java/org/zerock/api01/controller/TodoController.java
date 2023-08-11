@@ -59,6 +59,4 @@ public class TodoController {
 
         return Map.of("result", "success");
     }
-
-
 }
