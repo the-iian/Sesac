@@ -13,7 +13,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/sample")
 public class SampleController {
-
     @GetMapping("/doA")
     @PreAuthorize("hasRole('ROLE_USER')")
     public List<String> doA() {
@@ -25,4 +24,5 @@ public class SampleController {
     public List<String> doB() {
         return Arrays.asList("AdminAAA","AdminBBB","AdminCCC");
     }
+
 }
