@@ -15,12 +15,23 @@ public class S3UploaderTest {
     @Test
     public void testUpload() {
 
-        try{
-            String filePath ="C:\\zzz\\test.jpg";
+        try {
+            String filePath = "C:\\zzz\\test.jpg";
             String uploadName = s3Uploader.upload(filePath);
             log.info(uploadName);
-        } catch (Exception e){
+        } catch (Exception e) {
             log.error(e.getMessage());
         }
     }
-}
+
+    @Test
+    public void testRemove() {
+
+            try{
+
+                s3Uploader.removeS3File("test.jpg");
+            } catch (Exception e){
+                log.error(e.getMessage());
+            }
+        }
+    }
