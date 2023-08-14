@@ -58,8 +58,6 @@ public class TodoSearchImpl extends QuerydslRepositorySupport implements TodoSea
 
         long count = dtoQuery.fetchCount();
 
-
         return new PageImpl<>(list, pageRequestDTO.getPageable("tno"), count);
     }
-
 }
