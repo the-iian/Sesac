@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.zerock.b02.security.CustomUserDetailService;
 import org.zerock.b02.security.handler.Custom403Handler;
-
+import org.zerock.b02.security.handler.CustomSocialLoginSuccessHandler;
 
 import javax.sql.DataSource;
 
@@ -37,6 +37,12 @@ public class CustomSecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new CustomSocialLoginSuccessHandler(passwordEncoder());
+    }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
@@ -52,8 +58,13 @@ public class CustomSecurityConfig {
                 .key("12345678")
                 .tokenRepository(persistentTokenRepository())
                 .userDetailsService(userDetailsService)
-                .tokenValiditySeconds(60*60*24*30);
+                .tokenValiditySeconds(60 * 60 * 24 * 30);
+
         http.exceptionHandling().accessDeniedHandler(accessDeniedHandler()); // 403
+
+        http.oauth2Login()
+                .loginPage("/member/login")
+                .successHandler(authenticationSuccessHandler());
 
         return http.build();
     }
@@ -73,11 +84,11 @@ public class CustomSecurityConfig {
         return (web) -> web.ignoring().requestMatchers(PathRequest.toStaticResources().atCommonLocations());
 
     }
+
     @Bean
     public PersistentTokenRepository persistentTokenRepository() {
         JdbcTokenRepositoryImpl repo = new JdbcTokenRepositoryImpl();
         repo.setDataSource(dataSource);
         return repo;
     }
-
 }
