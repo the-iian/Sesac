@@ -39,5 +39,6 @@ public class SampleController {
                 uploadedFilePaths.stream().map(fileName -> s3Uploader.
                         upload(fileName)).collect(Collectors.toList());
         return s3Paths;
+
     }
 }
