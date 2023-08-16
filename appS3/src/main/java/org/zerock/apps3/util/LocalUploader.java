@@ -16,7 +16,7 @@ import java.util.UUID;
 @Component
 @Log4j2
 public class LocalUploader {
-    @Value("${org.zerock.upload.path}")// import 시에 springframework
+    @Value("${org.zerock.upload.path}")
     private String uploadPath;
 
     public List<String> uploadLocal(MultipartFile multipartFile){
