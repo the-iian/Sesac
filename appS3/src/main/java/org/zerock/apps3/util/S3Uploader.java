@@ -36,6 +36,7 @@ public class S3Uploader {
                 uploadFile)
                 .withCannedAcl(CannedAccessControlList.PublicRead));
         return amazonS3Client.getUrl(bucket, fileName).toString();
+
     }
     //S3 업로드 후 원본 파일 삭제
     private void removeOriginalFile(File targetFile) {
