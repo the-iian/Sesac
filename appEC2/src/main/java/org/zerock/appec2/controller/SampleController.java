@@ -12,5 +12,6 @@ public class SampleController {
     public String[] getArr(){
 
         return new String[]{"AAA", "BBB", "CCC"};
+
     }
 }
