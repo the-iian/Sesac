@@ -1,4 +1,4 @@
-package com.example.apibaas.service;
+package com.example.apibaas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class passwordResponse {
+public class PasswordResponse {
 
     private String status;
 

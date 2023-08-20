@@ -1,11 +1,8 @@
-package com.example.apibaas.service;
+package com.example.apibaas.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 // 요청용
 @Entity
@@ -13,10 +10,12 @@ import javax.persistence.Id;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class passwordReset {
+@Data
+public class PasswordResetRequest {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private String tenantId;
     private String apiKey;
     private String email;
