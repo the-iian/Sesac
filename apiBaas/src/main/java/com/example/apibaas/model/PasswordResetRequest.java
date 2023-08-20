@@ -1,10 +1,8 @@
 package com.example.apibaas.model;
 
 import lombok.*;
-
 import javax.persistence.*;
 
-// 요청용
 @Entity
 @Getter
 @Builder

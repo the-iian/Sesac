@@ -22,5 +22,6 @@ public class RestTemplateTestServiceTest {
         ResponseEntity<PasswordResponse> entity = controller.restTemplateTest1();
         System.out.println(">>> entity = " + entity.getStatusCode());
         Assertions.assertEquals(entity.getStatusCodeValue(), 200);
+
     }
 }
