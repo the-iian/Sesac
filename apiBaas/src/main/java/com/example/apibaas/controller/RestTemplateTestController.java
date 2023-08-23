@@ -19,5 +19,7 @@ public class RestTemplateTestController {
     public ResponseEntity<PasswordResponse> restTemplateTest1(){
 
         return ResponseEntity.ok(userApiService.callPostExternalServer());
+
     }
+
 }
