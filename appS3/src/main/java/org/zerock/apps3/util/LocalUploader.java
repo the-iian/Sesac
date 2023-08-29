@@ -46,6 +46,5 @@ public class LocalUploader {
         }
 
         return savePathList;
-
     }
 }

@@ -38,9 +38,7 @@ public class ReplyController {
         }
 
         Map<String, Long> resultMap = new HashMap<>();
-
         Long rno = replyService.register(replyDTO);
-
         resultMap.put("rno",rno);
 
         return resultMap;
