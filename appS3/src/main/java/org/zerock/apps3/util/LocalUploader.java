@@ -23,7 +23,9 @@ public class LocalUploader {
 
         if(multipartFile == null || multipartFile.isEmpty()){
             return null;
+
         }
+
         String uuid = UUID.randomUUID().toString();
         String saveFileName = uuid+"_"+ multipartFile.getOriginalFilename();
         Path savePath = Paths.get(uploadPath, saveFileName);
@@ -37,10 +39,13 @@ public class LocalUploader {
                 Thumbnailator.createThumbnail(savePath.toFile(), thumbFile,
                         200,200);
             }
-        }catch (Exception e){
+
+        } catch (Exception e){
             log.error("ERROR: " + e.getMessage());
             e.printStackTrace();
         }
+
         return savePathList;
+
     }
 }
