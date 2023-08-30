@@ -51,4 +51,5 @@ public class SwaggerConfig {
         AuthorizationScope authorizationScope = new AuthorizationScope("global", "global access");
         return List.of(new SecurityReference("Authorization", new AuthorizationScope[] {authorizationScope}));
     }
+
 }
