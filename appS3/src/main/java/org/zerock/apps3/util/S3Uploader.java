@@ -29,6 +29,7 @@ public class S3Uploader {
         removeOriginalFile(targetFile);
         return uploadImageUrl;
     }
+
     // S3로 업로드
     private String putS3(File uploadFile, String fileName)throws RuntimeException
     {
@@ -38,6 +39,7 @@ public class S3Uploader {
         return amazonS3Client.getUrl(bucket, fileName).toString();
 
     }
+
     //S3 업로드 후 원본 파일 삭제
     private void removeOriginalFile(File targetFile) {
         if (targetFile.exists() && targetFile.delete()) {
@@ -46,9 +48,11 @@ public class S3Uploader {
         }
         log.info("fail to remove");
     }
+
     public void removeS3File(String fileName){
         final DeleteObjectRequest deleteObjectRequest = new
                 DeleteObjectRequest(bucket, fileName);
         amazonS3Client.deleteObject(deleteObjectRequest);
     }
+
 }
