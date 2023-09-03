@@ -21,5 +21,4 @@ public class RestTemplateTestController {
         return ResponseEntity.ok(userApiService.callPostExternalServer());
 
     }
-
 }
