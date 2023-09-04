@@ -4,7 +4,6 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
 import com.amazonaws.services.s3.model.DeleteObjectRequest;
 import com.amazonaws.services.s3.model.PutObjectRequest;
-
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
@@ -46,6 +45,7 @@ public class S3Uploader {
             log.info("File delete success");
             return;
         }
+
         log.info("fail to remove");
     }
 
@@ -53,6 +53,6 @@ public class S3Uploader {
         final DeleteObjectRequest deleteObjectRequest = new
                 DeleteObjectRequest(bucket, fileName);
         amazonS3Client.deleteObject(deleteObjectRequest);
-    }
 
+    }
 }
