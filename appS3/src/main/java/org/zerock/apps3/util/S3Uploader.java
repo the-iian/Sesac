@@ -9,13 +9,11 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import java.io.File;
-
 import java.util.UUID;
 @Component
 @RequiredArgsConstructor
 @Log4j2
 public class S3Uploader {
-
     private final AmazonS3Client amazonS3Client;
 
     @Value("${cloud.aws.s3.bucket}")
