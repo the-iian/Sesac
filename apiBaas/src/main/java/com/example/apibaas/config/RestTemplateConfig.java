@@ -22,7 +22,6 @@ public class RestTemplateConfig {
                 .setReadTimeout(Duration.ofMillis(5000))
                 .additionalMessageConverters(new StringHttpMessageConverter(Charset.forName("UTF-8")))
                 .build();
-
     }
 
 }
