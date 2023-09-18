@@ -30,10 +30,10 @@ public class LocalUploader {
         String saveFileName = uuid+"_"+ multipartFile.getOriginalFilename();
         Path savePath = Paths.get(uploadPath, saveFileName);
         List<String> savePathList = new ArrayList<>();
-        try{
+        try {
             multipartFile.transferTo(savePath);
             savePathList.add(savePath.toFile().getAbsolutePath());
-            if(Files.probeContentType(savePath).startsWith("image")){
+            if (Files.probeContentType(savePath).startsWith("image")){
                 File thumbFile = new File(uploadPath, "s_" + saveFileName);
                 savePathList.add(thumbFile.getAbsolutePath());
                 Thumbnailator.createThumbnail(savePath.toFile(), thumbFile,
