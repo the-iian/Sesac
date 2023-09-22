@@ -19,6 +19,7 @@ public class S3Uploader {
     @Value("${cloud.aws.s3.bucket}")
     public String bucket; // S3 버킷 이름
 
+
     // S3로 파일 업로드하기
     public String upload(String filePath)throws RuntimeException {
         File targetFile = new File(filePath);
@@ -45,6 +46,7 @@ public class S3Uploader {
         }
 
         log.info("fail to remove");
+
     }
 
     public void removeS3File(String fileName){
