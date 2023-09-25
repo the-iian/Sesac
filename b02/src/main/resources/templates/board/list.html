@@ -30,10 +30,8 @@
     </form>
   </div>
 
-
   <div class="row mt-3">
     <div class="col">
-
       <div class="card">
         <div class="card-header">
           Board List
@@ -65,13 +63,10 @@
               <td>[[${#temporals.format(dto.regDate, 'yyyy-MM-dd')}]]</td>
             </tr>
             </tbody>
-
-
           </table>
 
           <div class="float-end">
             <ul class="pagination flex-wrap">
-
               <li class="page-item" th:if="${responseDTO.prev}">
                 <a class="page-link" th:data-num="${responseDTO.start -1}">Previous</a>
               </li>
@@ -87,8 +82,6 @@
               </li>
             </ul>
           </div>
-
-
         </div><!--end card body-->
       </div><!--end card-->
     </div><!-- end col-->
@@ -111,8 +104,6 @@
       </div>
     </div>
   </div>
-
-
 </div>
 
 
@@ -129,11 +120,9 @@
     }
 
     const num = target.getAttribute("data-num")
-
     const formObj = document.querySelector("form")
 
     formObj.innerHTML += `<input type='hidden' name='page' value='${num}'>`
-
     formObj.submit();
 
   },false)
@@ -148,7 +137,6 @@
 
   //show modal
   const result = [[${result}]]
-
   const modal = new bootstrap.Modal(document.querySelector(".modal"))
 
   if(result){
